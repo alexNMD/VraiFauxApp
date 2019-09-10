@@ -1,0 +1,79 @@
+<ActionBar title="VraiFauxApp">
+    <StackLayout orientation="horizontal"
+                 ios:horizontalAlignment="center"
+                 android:horizontalAlignment="center">
+        <Image src="res://gamelogo" class="action-image"></Image>
+    </StackLayout>
+</ActionBar>
+
+<GridLayout rows="60, *, 100">
+    <GridLayout orientation="horizontal" row="0" columns="100, 160, 140">
+        // header
+        <StackLayout col="0" orientation="horizontal">
+            <Label
+                    fontSize="20"
+                    class="text-primary"
+                    text="Score : "
+                    verticalAlignment="center">
+            </Label>
+            <Label
+                    fontSize="20"
+                    verticalAlignment="center"
+                    class="text-primary"
+                    [text]="game_settings.score">
+            </Label>
+        </StackLayout>
+        <StackLayout col="1"></StackLayout>
+        <StackLayout col="2" orientation="horizontal">
+            <Image
+                    src="res://heart"
+                    *ngFor="let life of lifes">
+            </Image>
+        </StackLayout>
+    </GridLayout>
+
+    <StackLayout row="1">
+        //  main
+        <Label
+                horizontalAlignment="center"
+                verticalAlignment="center"
+                [text]="question.text"
+                class="question"
+                textwrap="true">
+        </Label>
+        <Label
+                horizontalAlignment="center"
+                [text]="responseStatus"
+                fontSize="30"
+                *ngIf="answered">
+        </Label>
+        <Label
+                horizontalAlignment="center"
+                text="Cette affirmation est :"
+                fontSize="20"
+                *ngIf="answered">
+        </Label>
+        <Image src="res://vrai" *ngIf="response == true && answered"></Image>
+        <Image src="res://faux" *ngIf="response == false && answered"></Image>
+    </StackLayout>
+
+    <StackLayout row="2" orientation="horizontal" horizontalAlignment="center">
+        // footer
+        <StackLayout orientation="horizontal" *ngIf="!answered && game_settings.life != 0">
+            <Button class="button trueButton" text="VRAI" (tap)="userResponse(question, true)"></Button>
+            <Image
+                    src="res://joker"
+                    *ngFor="let joker of jokers"
+                    (tap)="useJoker(question)">
+            </Image>
+            <Button class="button falseButton" text="FAUX" (tap)="userResponse(question, false)"></Button>
+        </StackLayout>
+        <StackLayout *ngIf="answered && game_settings.life != 0">
+            <Button class="button btn-primary" text="Suivante" (tap)="nextQuestion()"></Button>
+        </StackLayout>
+        <StackLayout *ngIf="game_settings.life == 0">
+            <Button class="button falseButton" text="SCORE FINAL" [nsRouterLink]="['/endgame']"></Button>
+        </StackLayout>
+
+    </StackLayout>
+</GridLayout>

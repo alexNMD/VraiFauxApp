@@ -1,0 +1,40 @@
+<ActionBar title="VraiFauxApp">
+    <StackLayout orientation="horizontal"
+                 ios:horizontalAlignment="center"
+                 android:horizontalAlignment="left">
+        <Label text="Vrai ou faux ??"></Label>
+    </StackLayout>
+</ActionBar>
+
+<GridLayout rows="160, *,60">
+    <StackLayout row="0">
+        <Image
+        src="res://gamelogo">
+        </Image>
+    </StackLayout>
+    <StackLayout row="1">
+        <Button
+                text="JOUER"
+                class="btn btn-primary"
+                horizontalAlignment="center"
+                verticalAlignment="center"
+                [nsRouterLink]="['/question']">
+        </Button>
+        <Button
+                text="CLASSEMENT"
+                class="btn btn-primary"
+                horizontalAlignment="center"
+                verticalAlignment="center">
+        </Button>
+        <Button
+                text="PROPOSER UNE QUESTION"
+                class="btn btn-primary"
+                horizontalAlignment="center"
+                verticalAlignment="center">
+        </Button>
+    </StackLayout>
+    <StackLayout row="2">
+        <Button text="OPTIONS" background="red"></Button>
+    </StackLayout>
+</GridLayout>
+

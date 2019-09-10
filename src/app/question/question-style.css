@@ -1,0 +1,22 @@
+.question {
+    font-size: 30px;
+    font-weight: bold;
+    color: black;
+    margin-top: 200px;
+    text-align: center;
+}
+.button {
+    font-size: 20px;
+    color: white;
+}
+.trueButton {
+    background-color: darkgreen;
+}
+.falseButton {
+    background-color: darkred;
+}
+.action-image {
+    width: 500px;
+    height: 300px;
+    vertical-align: center;
+}
