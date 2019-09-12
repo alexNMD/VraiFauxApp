@@ -7,7 +7,7 @@
 </ActionBar>
 
 <GridLayout rows="60, *, 100">
-    <GridLayout orientation="horizontal" row="0" columns="100, 160, 140">
+    <GridLayout orientation="horizontal" row="0" columns="100, *, auto">
         // header
         <StackLayout col="0" orientation="horizontal">
             <Label
@@ -23,7 +23,7 @@
                     [text]="game_settings.score">
             </Label>
         </StackLayout>
-        <StackLayout col="1"></StackLayout>
+
         <StackLayout col="2" orientation="horizontal">
             <Image
                     src="res://heart"
@@ -59,20 +59,26 @@
 
     <StackLayout row="2" orientation="horizontal" horizontalAlignment="center">
         // footer
-        <StackLayout orientation="horizontal" *ngIf="!answered && game_settings.life != 0">
-            <Button class="button trueButton" text="VRAI" (tap)="userResponse(question, true)"></Button>
-            <Image
-                    src="res://joker"
-                    *ngFor="let joker of jokers"
-                    (tap)="useJoker(question)">
-            </Image>
-            <Button class="button falseButton" text="FAUX" (tap)="userResponse(question, false)"></Button>
+        <GridLayout orientation="horizontal" *ngIf="!answered && game_settings.life != 0" columns="100, *, 100">
+            <Button class="button greenButton" text="VRAI" (tap)="userResponse(question, true)" col="0"></Button>
+            <StackLayout orientation="horizontal" col="1">
+                <Image
+                        src="res://joker"
+                        *ngFor="let joker of jokers"
+                        (tap)="useJoker(question)">
+                </Image>
+            </StackLayout>
+            <Button class="button redButton" text="FAUX" (tap)="userResponse(question, false)" col="2"></Button>
+        </GridLayout>
+        <StackLayout *ngIf="answered && game_settings.life != 0 && !endgame">
+            <Button class="button blueButton" text="Suivante" (tap)="nextQuestion()"></Button>
         </StackLayout>
-        <StackLayout *ngIf="answered && game_settings.life != 0">
-            <Button class="button btn-primary" text="Suivante" (tap)="nextQuestion()"></Button>
-        </StackLayout>
-        <StackLayout *ngIf="game_settings.life == 0">
-            <Button class="button falseButton" text="SCORE FINAL" [nsRouterLink]="['/endgame']"></Button>
+        <StackLayout *ngIf="game_settings.life == 0 || endgame">
+            <Label
+                    fontSize="20"
+                    text="Bien joué ! Tu as battu le système !">
+            </Label>
+            <Button class="button redButton" text="SCORE FINAL" [nsRouterLink]="['/endgame']"></Button>
         </StackLayout>
 
     </StackLayout>

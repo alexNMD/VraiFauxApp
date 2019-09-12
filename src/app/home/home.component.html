@@ -2,7 +2,7 @@
     <StackLayout orientation="horizontal"
                  ios:horizontalAlignment="center"
                  android:horizontalAlignment="left">
-        <Label text="Vrai ou faux ??"></Label>
+        <Label text="Vrai ou faux ??" fontSize="20"></Label>
     </StackLayout>
 </ActionBar>
 
@@ -15,26 +15,26 @@
     <StackLayout row="1">
         <Button
                 text="JOUER"
-                class="btn btn-primary"
+                class="button blueButton"
                 horizontalAlignment="center"
                 verticalAlignment="center"
                 [nsRouterLink]="['/question']">
         </Button>
         <Button
                 text="CLASSEMENT"
-                class="btn btn-primary"
+                class="button blueButton"
                 horizontalAlignment="center"
                 verticalAlignment="center">
         </Button>
         <Button
                 text="PROPOSER UNE QUESTION"
-                class="btn btn-primary"
+                class="button blueButton"
                 horizontalAlignment="center"
                 verticalAlignment="center">
         </Button>
     </StackLayout>
     <StackLayout row="2">
-        <Button text="OPTIONS" background="red"></Button>
+        <Button text="OPTIONS" class="button redButton" [nsRouterLink]="['/options']"></Button>
     </StackLayout>
 </GridLayout>
 

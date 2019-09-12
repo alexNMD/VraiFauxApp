@@ -1,13 +1,24 @@
-<GridLayout rows="160, *,60">
+<ActionBar title="VraiFauxApp">
+    <StackLayout orientation="horizontal"
+                 ios:horizontalAlignment="center"
+                 android:horizontalAlignment="center">
+        <Image src="res://gamelogo" class="action-image"></Image>
+    </StackLayout>
+</ActionBar>
+
+<GridLayout rows="100, *,60">
     <StackLayout row="0">
         <Label
-        text="Score Final">
+        text="SCORE FINAL"
+        class="finalScore">
         </Label>
+        <Label [text]="game_settings.score" class="finalScore"></Label>
     </StackLayout>
-    <StackLayout row="1">
-
-    </StackLayout>
+    <DockLayout row="1" orientation="horizontal">
+            <Button text="Partager" class="button blueButton" dock="left" (tap)="share()"></Button>
+            <Button text="Rejouer" class="button greenButton" dock="right" (tap)="replay()"></Button>
+    </DockLayout>
     <StackLayout row="2">
-        <Button text="CLASSEMENT" background="red"></Button>
+        <Button class="button redButton" text="CLASSEMENT" [nsRouterLink]="['/classement']"></Button>
     </StackLayout>
 </GridLayout>

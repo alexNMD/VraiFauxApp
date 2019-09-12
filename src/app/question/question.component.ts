@@ -17,6 +17,7 @@ export class QuestionComponent {
     lifes = [];
     jokers = [];
     responseStatus = '';
+    endgame = false;
 
     constructor(private questionService: QuestionService) {
         this.question = this.questionService.randomSelection();
@@ -28,7 +29,7 @@ export class QuestionComponent {
     userResponse(question: Question, userResponse) {
         this.answered = true;
         this.response = question.answer;
-
+        this.questionService.questionAnswered(question);
         if (question.answer === userResponse) {
             this.responseStatus = "Bonne réponse !";
             this.game_settings.score += 1;
@@ -43,8 +44,12 @@ export class QuestionComponent {
     }
 
     nextQuestion() {
-        this.question = this.questionService.randomSelection();
-        this.answered = false;
+        if (this.questionService.randomSelection()) {
+            this.question = this.questionService.randomSelection();
+            this.answered = false;
+        } else {
+            this.endgame = true;
+        }
     }
 
     useJoker(question) {
@@ -60,7 +65,9 @@ export class QuestionComponent {
                 this.jokers = Array(this.game_settings.joker).fill(0).map((x,i)=>i);
 
                 this.answered = true;
+                this.responseStatus = "";
                 this.response = question.answer;
+                this.questionService.questionAnswered(question);
             }
         });
     }

@@ -1,0 +1,31 @@
+<ActionBar title="VraiFauxApp">
+    <StackLayout orientation="horizontal"
+                 ios:horizontalAlignment="center"
+                 android:horizontalAlignment="center">
+        <Image src="res://gamelogo" class="action-image"></Image>
+    </StackLayout>
+</ActionBar>
+
+<GridLayout rows="50 ,100, 100, 100">
+    <Label row="0" text="OPTIONS" class="m-15 text-center"></Label>
+    <StackLayout row="1" orientation="vertical">
+        <Label text="Niveau de difficulté" class="optionCateg"></Label>
+        <StackLayout orientation="horizontal">
+            <Switch
+                    checked="{{ levelCheck }}"
+                    (checkedChange)="changeDifficulty($event)"
+                    class="m-15"
+                    backgroundColor="red"
+                    offBackgroundColor="green"
+                    color="gray">
+            </Switch>
+            <Label [text]="game_settings.difficulty.label" class="m-15"></Label>
+        </StackLayout>
+    </StackLayout>
+    <StackLayout row="2">
+        <Label text="Choix du thème" class="optionCateg"></Label>
+    </StackLayout>
+    <StackLayout row="3">
+        <Label text="Effets" class="optionCateg"></Label>
+    </StackLayout>
+</GridLayout>
