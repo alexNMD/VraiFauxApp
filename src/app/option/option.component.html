@@ -6,15 +6,16 @@
     </StackLayout>
 </ActionBar>
 
-<GridLayout rows="50 ,100, 100, 100">
-    <Label row="0" text="OPTIONS" class="m-15 text-center"></Label>
+<GridLayout rows="70 ,100, 100, 100" class="text-center">
+    <Label row="0" text="OPTIONS" class="m-15" fontSize="30"></Label>
     <StackLayout row="1" orientation="vertical">
         <Label text="Niveau de difficulté" class="optionCateg"></Label>
-        <StackLayout orientation="horizontal">
+        <StackLayout>
             <Button
                     class="button blueButton"
                     [text]="game_settings.difficulty.label"
-                    (tap)="changeDifficulty()">
+                    (tap)="changeDifficulty()"
+                    horizontalAlignment="center">
             </Button>
         </StackLayout>
     </StackLayout>

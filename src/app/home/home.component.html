@@ -13,25 +13,30 @@
         </Image>
     </StackLayout>
     <StackLayout row="1">
-        <Button
-                text="JOUER"
-                class="button blueButton"
-                horizontalAlignment="center"
-                verticalAlignment="center"
-                [nsRouterLink]="['/question']">
-        </Button>
-        <Button
-                text="CLASSEMENT"
-                class="button blueButton"
-                horizontalAlignment="center"
-                verticalAlignment="center">
-        </Button>
-        <Button
-                text="PROPOSER UNE QUESTION"
-                class="button blueButton"
-                horizontalAlignment="center"
-                verticalAlignment="center">
-        </Button>
+        <GridLayout rows="100, 100, 100">
+            <Button
+                    text="JOUER"
+                    class="button blueButton"
+                    horizontalAlignment="center"
+                    verticalAlignment="center"
+                    [nsRouterLink]="['/question']"
+                    row="0">
+            </Button>
+            <Button
+                    text="CLASSEMENT"
+                    class="button blueButton"
+                    horizontalAlignment="center"
+                    verticalAlignment="center"
+                    row="1">
+            </Button>
+            <Button
+                    text="PROPOSER UNE QUESTION"
+                    class="button blueButton"
+                    horizontalAlignment="center"
+                    verticalAlignment="center"
+                    row="2">
+            </Button>
+        </GridLayout>
     </StackLayout>
     <StackLayout row="2">
         <Button text="OPTIONS" class="button redButton" [nsRouterLink]="['/options']"></Button>
