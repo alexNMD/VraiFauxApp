@@ -11,21 +11,18 @@
     <StackLayout row="1" orientation="vertical">
         <Label text="Niveau de difficulté" class="optionCateg"></Label>
         <StackLayout orientation="horizontal">
-            <Switch
-                    checked="{{ levelCheck }}"
-                    (checkedChange)="changeDifficulty($event)"
-                    class="m-15"
-                    backgroundColor="red"
-                    offBackgroundColor="green"
-                    color="gray">
-            </Switch>
-            <Label [text]="game_settings.difficulty.label" class="m-15"></Label>
+            <Button
+                    class="button blueButton"
+                    [text]="game_settings.difficulty.label"
+                    (tap)="changeDifficulty()">
+            </Button>
         </StackLayout>
     </StackLayout>
     <StackLayout row="2">
         <Label text="Choix du thème" class="optionCateg"></Label>
+        <ListPicker [items]="themes" selectedIndex="{{ actualThemeIndex }}" (selectedIndexChange)="changeTheme($event)"></ListPicker>
     </StackLayout>
     <StackLayout row="3">
-        <Label text="Effets" class="optionCateg"></Label>
+<!--        <Label text="Effets" class="optionCateg"></Label>-->
     </StackLayout>
 </GridLayout>

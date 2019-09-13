@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { QuestionService } from "./question.service";
 import { Question } from "./question";
 import * as dialogs from "tns-core-modules/ui/dialogs";
+var sound = require("nativescript-sound");
 
 @Component({
     selector: 'question-component',
@@ -18,12 +19,14 @@ export class QuestionComponent {
     jokers = [];
     responseStatus = '';
     endgame = false;
+    // successEffect: any;
 
     constructor(private questionService: QuestionService) {
         this.question = this.questionService.randomSelection();
         this.game_settings = this.questionService.getGameSetting();
         this.lifes = Array(this.game_settings.life).fill(0).map((x,i)=>i);
         this.jokers = Array(this.game_settings.joker).fill(0).map((x,i)=>i);
+        // this.successEffect = sound.create("~/sounds/successSound.mp3");
     }
 
     userResponse(question: Question, userResponse) {
@@ -33,23 +36,24 @@ export class QuestionComponent {
         if (question.answer === userResponse) {
             this.responseStatus = "Bonne réponse !";
             this.game_settings.score += 1;
+            // this.successEffect.play;
         } else {
             this.responseStatus = "Mauvaise réponse !";
             this.game_settings.life -= 1;
-            if (this.game_settings.life == 0) {
-
-            }
             this.lifes = Array(this.game_settings.life).fill(0).map((x,i)=>i);
         }
     }
 
     nextQuestion() {
-        if (this.questionService.randomSelection()) {
-            this.question = this.questionService.randomSelection();
-            this.answered = false;
-        } else {
-            this.endgame = true;
+        if (!this.endgame) {
+            if (this.questionService.randomSelection()) {
+                this.question = this.questionService.randomSelection();
+                this.answered = false;
+            } else {
+                this.endgame = true;
+            }
         }
+
     }
 
     useJoker(question) {
