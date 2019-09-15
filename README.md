@@ -2,6 +2,11 @@
 
 Application de type Quiz affichant des questions VRAI/FAUX.
 
+Réalisée avec Nativescript (Angular version). 
+Commande pour build :
+- Android : tns run android
+- IOS : tns run ios
+
 
 Une question:
 - un texte
